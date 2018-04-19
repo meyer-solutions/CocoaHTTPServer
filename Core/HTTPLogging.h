@@ -54,7 +54,11 @@
 
 #define HTTP_LOG_CONTEXT 80
 
+#define HTTP_LOG_OBJC_MAYBE(async, lvl, flg, ctx, frmt, ...) \
+do{ if(HTTP_LOG_ASYNC_ENABLED) LOG_MAYBE(async, lvl, flg, ctx, nil, sel_getName(_cmd), frmt, ##__VA_ARGS__); } while(0)
 
+#define HTTP_LOG_C_MAYBE(async, lvl, flg, ctx, frmt, ...) \
+do{ if(HTTP_LOG_ASYNC_ENABLED) LOG_MAYBE(async, lvl, flg, ctx, nil, __FUNCTION__, frmt, ##__VA_ARGS__); } while(0)
 
 // Configure log levels.
 
